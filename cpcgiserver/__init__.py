@@ -21,9 +21,14 @@ import urlparse
 import lib.format_
 from cStringIO import StringIO
 try:
-    from cherrypy.wsgiserver import wsgiserver2 as wsgiserver
+    from cheroot.wsgi import Server as wsgiserver
 except ImportError:
-    from cherrypy import wsgiserver
+    from cherrypy.wsgiserver import CherryPyWSGIServer as wsgiserver  
+  
+try:
+    from cheroot.wsgi import Server as WSGIServer
+except ImportError:
+    from cherrypy.wsgiserver import CherryPyWSGIServer as WSGIServer  
 from cherrypy._cpcompat import unquote
 
 THISDIR = os.path.dirname(os.path.abspath(__file__))
